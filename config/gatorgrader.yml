@@ -1,0 +1,71 @@
+---
+name: cs102-F2020-practical7
+break: true
+indent: 4
+---
+
+# Learn more about GatorGrader and its supported checks by visiting this web site:
+# https://github.com/GatorEducator/gatorgrader
+
+# Explanation:
+# --> a check without an "--exact" runs a count for an entity as an "at least"
+# --> checks below a file in a specified directory are for that specific file and directory
+# --> checks that appear stand-alone are for an entire Git repository
+
+# --> check the Python program
+cartesiancreator/cartesiancreator/__main__.py:
+    ConfirmFileExists
+    MatchFileFragment --fragment "TODO" --count 0 --exact
+    MatchFileFragment --fragment "Option([])" --count 2 --exact
+    MatchFileFragment --fragment "run(main)" --count 1 --exact
+    MatchFileFragment --fragment "set(first)" --count 1 --exact
+    MatchFileFragment --fragment "set(second)" --count 1 --exact
+    MatchFileFragment --fragment "cartesian.cartesian_product" --count 1 --exact
+    MatchFileFragment --fragment "import List" --count 1 --exact
+    CountMultipleLineComments --language Python --count 2
+    CountSingleLineComments --language Python --count 4
+
+# --> check the Python program
+cartesiancreator/cartesiancreator/cartesian.py:
+    ConfirmFileExists
+    MatchFileFragment --fragment "TODO" --count 0 --exact
+    MatchFileFragment --fragment "first_element in first" --count 1
+    MatchFileFragment --fragment "second_element in second" --count 1
+    MatchFileFragment --fragment "from typing import Iterator" --count 1
+    MatchFileFragment --fragment "from typing import Set" --count 1
+    CountMultipleLineComments --language Python --count 2
+    CountSingleLineComments --language Python --count 3
+
+# --> check the Python program
+cartesiancreator/tests/test_cartesian.py:
+    ConfirmFileExists
+    MatchFileFragment --fragment "TODO" --count 0 --exact
+    CountMultipleLineComments --language Python --count 1
+
+# --> check the technical writing for various characteristics
+writing/reflection.md:
+    ConfirmFileExists
+    CountFileWords --count 600
+    CountMarkdownTags --tag "heading" --count 8 --exact
+    CountMarkdownTags --tag "code" --count 1
+    CountMarkdownTags --tag "code_block" --count 3 --exact
+    MatchFileFragment --fragment "TODO" --count 0 --exact
+    MatchFileFragment --fragment "Add Your Name Here" --count 0 --exact
+
+# --> check that the number of commits in the Git repository is beyond a threshold
+CountCommits --count 5
+
+# --> check that the program executes correctly and produces correct number of lines of output
+ExecuteCommand --command "cd cartesiancreator; poetry install; poetry run python cartesiancreator --first 1 --first 2 --second 3 --second 4; cd .."
+
+# Output of the Python Program:
+
+# Welcome to the Cartesian product calculator!
+
+# First set: {1, 2}
+
+# Second set: {3, 4}
+
+# Address of generator for Cartesian produce of sets: <generator object cartesian_product at 0x7fc81fa369e0>
+
+# Cartesian product of sets: [{1, 3}, {1, 4}, {2, 3}, {2, 4}]
